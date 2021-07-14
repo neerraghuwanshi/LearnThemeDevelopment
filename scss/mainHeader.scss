@@ -1,0 +1,27 @@
+#mainHeaderContainer{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+
+#mainHeaderLeftContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainHeaderLink{
+    color: 'white';
+    padding: 15px 50px;
+    text-decoration: none;
+}
+
+.mainHeaderLink:hover{
+    cursor: pointer;
+    background-color: grey;
+}
+
+.mainHeaderLinkActive{
+    color: 'black';
+    background-color: white;
+}

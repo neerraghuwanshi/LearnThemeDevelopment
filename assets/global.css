@@ -1,1 +1,1 @@
-*{box-sizing:border-box;background-color:green}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,sans-serif}#mainHeaderContainer{display:flex;justify-content:space-between;background-color:#000}#mainHeaderLeftContainer{display:flex;justify-content:center;align-items:center}.mainHeaderLink{color:white;padding:15px 50px;text-decoration:none}.mainHeaderLink:hover{cursor:pointer;background-color:grey}.mainHeaderLinkActive{color:black;background-color:#fff}

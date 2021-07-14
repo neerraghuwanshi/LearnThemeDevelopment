@@ -1,0 +1,28 @@
+<div id='mainHeaderContainer'>
+    <div id='mainHeaderLeftContainer'>
+        {% assign url = request.path | split: '/' %}
+        {% for link in linklists.main-menu.links limit:4 %}
+          {% assign activeUrl = link.url | split: '/' %}
+          {% assign child_list_handle = link.title | handleize %}
+          {% if linklists[child_list_handle].links != blank %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            [{% for childlink in linklists[child_list_handle].links %}
+              <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+            {% endfor %}]
+          {% else %}
+              <a 
+                  class='mainHeaderLink {% if url[1] == activeUrl[1] %}mainHeaderLinkActive{% endif %}' 
+                  href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+          {% endif %}
+        {% endfor %}
+    </div>
+    {% assign lastLink = linklists.main-menu.links.last %}
+    {% assign activeUrl = lastLink.url | split: '/' %}
+    <a 
+        class='mainHeaderLink {% if url[1] == activeUrl[1] %}mainHeaderLinkActive{% endif %}' 
+        href="{{ lastLink.url }}">
+        {{lastLink.title}}
+    </a>
+  </div>
