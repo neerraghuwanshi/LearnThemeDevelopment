@@ -1,0 +1,41 @@
+#announcementBar{
+    text-align: center;
+    padding: 0 30px;
+    background-color: #004eca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.announcementBarTitle{
+    color: 'white';
+    font-weight: 400;
+    display: none;
+}
+
+.visibleAnnouncementBarTitle{
+    display: inline;
+    animation-name: displayNewTitle;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.announcementBarIcon{
+    color: 'white';
+    font-size: medium;
+    padding: 12px;
+}
+
+.announcementBarIcon:hover{
+    cursor: pointer;
+}
+
+
+@keyframes displayNewTitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

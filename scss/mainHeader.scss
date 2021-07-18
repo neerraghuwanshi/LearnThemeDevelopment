@@ -1,13 +1,11 @@
 #mainHeaderContainer{
+    background-color: black;
     display: flex;
     justify-content: space-between;
-    background-color: black;
 }
 
 #mainHeaderLeftContainer{
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .mainHeaderLink{
@@ -21,7 +19,7 @@
     background-color: grey;
 }
 
-.mainHeaderLinkActive{
+.mainHeaderActiveLink{
     color: 'black';
     background-color: white;
 }

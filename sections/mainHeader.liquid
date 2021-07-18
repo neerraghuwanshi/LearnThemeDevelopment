@@ -1,0 +1,53 @@
+<div id='mainHeaderContainer'>
+
+    {% assign menuLinks = linklists.main-menu.links %}
+
+    <div id='mainHeaderLeftContainer'>
+        {% for link in menuLinks limit:4 %}
+            {% assign view = link.url | split: '/' %}
+            <a 
+                class='mainHeaderLink'
+                onclick="setActiveMainHeaderLink('{{link.title}}')"
+                href="{{ link.url }}{% if link.url != '/' %}?view={{view[2]}}{% endif %}">
+                {{ link.title }}
+            </a>
+        {% endfor %}
+    </div>
+
+    {% assign lastLink = menuLinks.last %}
+    {% assign view = lastLink.url | split: '/' %}
+
+    <a
+        class='mainHeaderLink'
+        onclick="setActiveMainHeaderLink('{{link.title}}')"
+        href="{{ lastLink.url }}?view={{view[2]}}">
+        {{ lastLink.title }}
+    </a>
+
+</div>
+
+
+<script>
+
+    const mainHeaderInitials = () => {
+        let links = document.getElementsByClassName('mainHeaderLink')
+        links = Array.from(links)
+        let mainHeaderActiveLinkTitle = sessionStorage.getItem('mainHeaderActiveLinkTitle')
+        if (!mainHeaderActiveLinkTitle){
+            sessionStorage.setItem('mainHeaderActiveLinkTitle', links[0].outerText)
+            mainHeaderActiveLinkTitle = links[0].outerText
+        }
+        let activeLink = links.find(link => link.outerText === mainHeaderActiveLinkTitle)
+        activeLink.classList.add('mainHeaderActiveLink')
+    }
+
+    const setMainHeaderActiveLink = (title) => {
+        sessionStorage.setItem('mainHeaderActiveLinkTitle', title)
+    }
+
+    mainHeaderInitials()
+
+</script>
+
+
+{% include 'subHeader' %}

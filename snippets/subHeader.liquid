@@ -1,0 +1,97 @@
+{% assign menuType = 'shop' %}
+{% assign urlArray = request.path | split: '/' %}
+{% if urlArray[1] == 'pages' %}
+    {% if urlArray[2] != 'we-are-alo' %}
+        {% assign menuType = urlArray[2] | split: '-' | first %}
+    {% endif %}
+{% endif %}
+{% assign menuLink = menuType | append: '-menu' %}
+
+<div id='subHeaderContainer'>
+
+    <div id='subHeaderLeftContainer'>
+        {% for link in linklists[menuLink].links %}
+
+            {% assign view = link.url | split: '/' %}
+            {% assign firstLink = linklists[menuLink].links.first %}
+
+            {% if link == firstLink %}
+                <a 
+                    class='subHeaderLink'
+                    href="{{ link.url }}{% if link.url != '/' %}?view={{ view[2] }}{% endif %}">
+                    <div
+                        class='subHeaderLinkContainer subHeaderFirstLinkContainer'>
+                        <div>
+                            {{ link.title }}
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a 
+                    class='subHeaderLink'
+                    onmouseenter="mouseEnter(this)"
+                    onmouseleave="mouseLeave(this)"
+                    href="{{ link.url }}?view={{ view[2] }}">
+                    <div
+                        class='subHeaderLinkContainer'>
+                        <div>
+                            {{ link.title }}
+                        </div>
+                        <div class='subHeaderActiveLinkBorder'>
+
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div id='subHeaderRightContainer'>
+        <div class='subHeaderIconContainer'>
+            <i class="fas fa-search subHeaderIcon"></i>
+        </div>
+        <div class='subHeaderIconContainer'>
+            <i class="fas fa-user subHeaderIcon"></i>
+        </div>
+        <div class='subHeaderIconContainer subHeaderLastIconContainer'>
+            <i class="fas fa-shopping-bag subHeaderIcon"></i>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    console.log('{{urlArray[2]}}')
+    const mouseEnter = (element) => {
+        element.children[0].children[1].classList.add('hoveredLink')
+        element.children[0].style.padding = '25px 5px 18px 5px';
+    }
+
+    const mouseLeave = (element) => {
+        element.children[0].style.padding = '25px 5px 18px 5px';
+        element.children[0].children[1].classList.remove('hoveredLink')
+        element.children[0].children[1].classList.add('unHoveredLink')
+        setTimeout(() => {
+            element.children[0].children[1].classList.remove('unHoveredLink')
+            element.children[0].style.padding = '25px 5px 25px 5px';
+        }, 300);
+    }
+
+
+    let activeLinkHeader = sessionStorage.getItem('mainHeaderActiveLinkTitle') || 'SHOP'
+
+    subHeaderIndex = 0
+    for (let link of Array.from(links)){
+        if (link.outerText === mainHeaderActiveLinkTitle){
+            break
+        }
+        subHeaderIndex += 1
+    }
+
+    console.log(subHeaderIndex)
+
+    let newSubHeader = document.getElementsByClassName('subHeaderContainer')[subHeaderIndex]
+    newSubHeader.classList.add('activeSubHeader')
+</script>
