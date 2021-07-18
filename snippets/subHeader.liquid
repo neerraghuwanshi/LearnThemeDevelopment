@@ -63,7 +63,7 @@
 
 
 <script>
-    console.log('{{urlArray[2]}}')
+    
     const mouseEnter = (element) => {
         element.children[0].children[1].classList.add('hoveredLink')
         element.children[0].style.padding = '25px 5px 18px 5px';
@@ -79,19 +79,4 @@
         }, 300);
     }
 
-
-    let activeLinkHeader = sessionStorage.getItem('mainHeaderActiveLinkTitle') || 'SHOP'
-
-    subHeaderIndex = 0
-    for (let link of Array.from(links)){
-        if (link.outerText === mainHeaderActiveLinkTitle){
-            break
-        }
-        subHeaderIndex += 1
-    }
-
-    console.log(subHeaderIndex)
-
-    let newSubHeader = document.getElementsByClassName('subHeaderContainer')[subHeaderIndex]
-    newSubHeader.classList.add('activeSubHeader')
 </script>
